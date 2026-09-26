@@ -13,54 +13,6 @@ Modern manufacturing, retail, and logistics enterprises lose billions annually d
 
 ## 🏗️ System Architecture & Data Flow
 
-```mermaid
-graph TD
-    subgraph Frontend [Modern Single Page Application (SPA)]
-        UI[Glassmorphic UI / Vanilla JS]
-        DC[Executive Dashboard & Charts]
-        CM[Physical Cycle Count Mode]
-        BC[Barcode & QR Engine]
-        AI[AI Assistant Drawer]
-        RBAC[1-Click Persona Switcher]
-    end
-
-    subgraph Backend [Modular Python Flask API]
-        APP[app.py / Application Gateway]
-        AUTH[Auth & RBAC Middleware]
-        SVC[inventory_service.py / Business Engine]
-        AI_SVC[assistant_service.py / NLP & Analytics]
-        
-        subgraph Blueprints [REST Blueprints]
-            R_PROD[/api/products]
-            R_REC[/api/receipts]
-            R_DEL[/api/deliveries]
-            R_TRA[/api/transfers]
-            R_ADJ[/api/adjustments]
-            R_LED[/api/ledger]
-        end
-    end
-
-    subgraph Database [ACID Relational Storage Engine]
-        DB[(stocksense.db)]
-        T_STOCK[stock table: on_hand, reserved]
-        T_LEDGER[stock_ledger table: immutable]
-        T_AUDIT[audit_logs table: forensic diffs]
-    end
-
-    UI --> APP
-    APP --> Blueprints
-    Blueprints --> AUTH
-    AUTH --> SVC
-    SVC --> DB
-    AI --> AI_SVC
-    AI_SVC --> DB
-    SVC --> T_STOCK
-    SVC --> T_LEDGER
-    SVC --> T_AUDIT
-```
-
----
-
 ## ⚡ Core Pillars & Differentiators
 
 ### 1. 🧮 Mathematical Inventory & Double-Entry Allocation Model
